@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dekses</groupId>
-    <artifactId>jersey-docker-demo</artifactId>
+    <artifactId>jersey-feed-globo</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>jersey-docker-demo</name>
+    <name>jersey-feed-globo</name>
 
     <dependencyManagement>
         <dependencies>
@@ -78,7 +78,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.dekses.jersey.docker.demo.Main</mainClass>
+                    <mainClass>com.dekses.jersey.feed.globo.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
