@@ -7,9 +7,11 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -40,6 +42,9 @@ import converters.Converter;
 @Path("feed")
 public class FeedResource {
 
+	@DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml") @QueryParam("xmlurl")
+	private String url;
+	
     /**
      * Method handling HTTP GET requests. The returned object will be sent
      * to the client as "APPLICATION_JSON" media type.
@@ -55,16 +60,13 @@ public class FeedResource {
     public String getIt() throws Exception {
     	
     	XMLProvider xmlprovider = new XMLProvider();
-    	//AQUI EU COMEÇO A PEGAR O XML
-    	String url="http://revistaautoesporte.globo.com/rss/ultimas/feed.xml";
-        String xml = xmlprovider.GetXML(url);
+    
+    	String xml = xmlprovider.GetXML(url);
    	
     	//PEGA DENTRO DO JSONOBJECT O ARRAY DE ITENS
     	JsonProvider jsonprovider = new JsonProvider();
     	JSONArray itens = jsonprovider.GetArrayDeItens(xml);
 
-    	
-    	
     	Converter converter = new Converter();
     	JSONArray feed = converter.ConverteItemsToFeedItem(itens);
 
