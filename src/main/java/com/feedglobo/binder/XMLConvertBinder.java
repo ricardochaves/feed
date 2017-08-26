@@ -1,11 +1,11 @@
-package binder;
+package com.feedglobo.binder;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.Resource;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
-import converters.XMLConvert;
+import com.feedglobo.converters.XMLConvert;
 
 @Resource
 @ManagedBean

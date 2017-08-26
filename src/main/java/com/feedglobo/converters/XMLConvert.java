@@ -1,4 +1,4 @@
-package converters;
+package com.feedglobo.converters;
 
 import java.io.StringWriter;
 import java.net.URL;

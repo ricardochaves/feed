@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dekses</groupId>
-    <artifactId>jersey-feed-globo</artifactId>
+    <groupId>com.globo</groupId>
+    <artifactId>feedglobo</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>jersey-feed-globo</name>
+    <name>feedglobo</name>
 
     <dependencyManagement>
         <dependencies>
@@ -84,7 +84,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>com.dekses.jersey.feed.globo.Main</mainClass>
+                    <mainClass>com.feedglobo.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>

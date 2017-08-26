@@ -1,4 +1,6 @@
-package com.dekses.jersey.docker.demo;
+package com.feedglobo;
+
+import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -6,16 +8,11 @@ import javax.ws.rs.client.WebTarget;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dekses.jersey.feed.globo.Main;
-
-import converters.XMLConvert;
-
-import static org.junit.Assert.assertEquals;
+import com.feedglobo.converters.XMLConvert;
 
 public class MyResourceTest {
 

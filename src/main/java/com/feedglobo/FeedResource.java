@@ -1,9 +1,8 @@
-package com.dekses.jersey.feed.globo;
+package com.feedglobo;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,7 +13,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import converters.XMLConvert;
+import com.feedglobo.converters.XMLConvert;
 
 
 /**
@@ -26,7 +25,7 @@ public class FeedResource {
 	@DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml") @QueryParam("xmlurl")
 	private String url;
 	
-	//@Inject
+	//@Inject 
 	//private XMLConvert converte;
 	
     /**
