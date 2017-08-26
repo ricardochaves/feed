@@ -18,7 +18,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 
-public class XMLConvert {
+import com.feedglobo.interfaces.IXMLConvert;
+
+public class XMLConvert implements IXMLConvert {
 
 	public String converteXMLtoJson(String url) throws Exception {
     	

@@ -3,17 +3,20 @@ package com.feedglobo;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import com.feedglobo.converters.XMLConvert;
+import com.feedglobo.interfaces.IXMLConvert;
 
 
 /**
@@ -22,11 +25,15 @@ import com.feedglobo.converters.XMLConvert;
 @Path("feed")
 public class FeedResource {
 
+	@Inject   
+	public FeedResource(IXMLConvert converte) {
+		this.converte = converte;
+	}
+	
 	@DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml") @QueryParam("xmlurl")
 	private String url;
 	
-	//@Inject 
-	//private XMLConvert converte;
+	private final IXMLConvert converte;
 	
     /**
      * Method handling HTTP GET requests. The returned object will be sent
@@ -39,11 +46,16 @@ public class FeedResource {
      * @throws MalformedURLException 
      */ 
     @GET
+    @Inject 
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-    public String getIt() throws Exception {
+    public String getIt(@Context SecurityContext sc) throws Exception {
     	
-    	XMLConvert converte = new XMLConvert();
-
+    	if (sc.isUserInRole("PreferredCustomer")) {
+            System.out.println("true");
+        } else {
+        	System.out.println("false");
+        }
+        
         return converte.converteXMLtoJson(url);
     }
 }
