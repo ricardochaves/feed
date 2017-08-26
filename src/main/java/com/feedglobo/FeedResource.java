@@ -17,11 +17,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 import com.feedglobo.interfaces.IXMLConvert;
+import com.feedglobo.jwt.Autorizado;
 
 
 /**
  * Root resource (exposed at "feed" path)
  */
+
+@Autorizado
 @Path("feed")
 public class FeedResource {
 
