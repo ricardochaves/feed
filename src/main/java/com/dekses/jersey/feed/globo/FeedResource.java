@@ -3,6 +3,7 @@ package com.dekses.jersey.feed.globo;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+import javax.inject.Inject;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -24,6 +25,9 @@ public class FeedResource {
 
 	@DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml") @QueryParam("xmlurl")
 	private String url;
+	
+	//@Inject
+	//private XMLConvert converte;
 	
     /**
      * Method handling HTTP GET requests. The returned object will be sent

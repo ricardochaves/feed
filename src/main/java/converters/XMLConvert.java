@@ -36,7 +36,7 @@ public class XMLConvert {
     	return root.toString();
 	}
 	
-	private JSONArray getArrayDeItens(String xml) {
+	public JSONArray getArrayDeItens(String xml) {
 		 //AGORA ELE CONVERTE O XML QUE ESTÁ EM UMA STRING PARA UM JSONOBJECT
 	   	JSONObject soapDatainJsonObject = XML.toJSONObject(xml);
 	
@@ -46,7 +46,7 @@ public class XMLConvert {
 	   	return itens;
 	}
 	
-	private String downloadAsString(String url) throws Exception {
+	public String downloadAsString(String url) throws Exception {
 		
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
@@ -61,7 +61,7 @@ public class XMLConvert {
         return writer.getBuffer().toString();
 	}
 	
-	private JSONArray converteItemsToFeedItem(JSONArray itens) {
+	public JSONArray converteItemsToFeedItem(JSONArray itens) {
 		
 		JSONArray feed = new JSONArray();
     	
