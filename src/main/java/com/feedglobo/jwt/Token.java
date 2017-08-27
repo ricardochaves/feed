@@ -2,15 +2,19 @@ package com.feedglobo.jwt;
 
 import org.joda.time.DateTime;
 
+/**
+ * Objeto que contem os dados do Token
+ *
+ */
 public class Token {
-    private String userId;
+    private String idUsuario;
     private DateTime issued;
     private DateTime expires;
-    public String getUserId() {
-        return userId;
+    public String getIdUsuario() {
+        return idUsuario;
     }
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserId(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
     public DateTime getIssued() {
         return issued;

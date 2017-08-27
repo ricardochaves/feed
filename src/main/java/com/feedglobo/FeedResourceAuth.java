@@ -17,6 +17,10 @@ import org.xml.sax.SAXException;
 import com.feedglobo.interfaces.IXMLConvert;
 import com.feedglobo.jwt.Autorizado;
 
+/**
+ * Expõem o recurso que só pode ser acessado por usuários logados.
+ * Pode ser ver o uso da anotação @Aturoizado e também da anotação @Inject 
+ */
 @Autorizado
 @Path("feedauth")
 public class FeedResourceAuth {
@@ -42,7 +46,6 @@ public class FeedResourceAuth {
      * @throws MalformedURLException 
      */ 
     @GET
-    @Inject 
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public String getIt() throws Exception {
         return converte.converteXMLtoJson(url);

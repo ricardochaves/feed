@@ -9,19 +9,17 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
 import com.feedglobo.interfaces.IXMLConvert;
-import com.feedglobo.jwt.Autorizado;
 
 
 /**
- * Root resource (exposed at "feed" path)
+ * Expõem o recurso que só pode ser visto por qualquer usuário
+ * Aqui é utlizado a interface @Inject 
  */
 
 @Path("feed")
@@ -48,7 +46,6 @@ public class FeedResource {
      * @throws MalformedURLException 
      */ 
     @GET
-    @Inject 
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public String getIt() throws Exception {
         return converte.converteXMLtoJson(url);

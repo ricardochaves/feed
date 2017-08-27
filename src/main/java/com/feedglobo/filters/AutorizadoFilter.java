@@ -13,6 +13,12 @@ import javax.ws.rs.ext.Provider;
 import com.feedglobo.jwt.AjudaAuth;
 import com.feedglobo.jwt.Autorizado;
 
+/**
+ * Filtro executado para verificar se o usuário está logado.
+ * Ele trabalha junto com a anotação de Autorizado.
+ * @author ricar
+ *
+ */
 @Autorizado
 @Provider
 @Priority(Priorities.AUTHENTICATION)
@@ -23,23 +29,23 @@ public class AutorizadoFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
 
-        // Get the Authorization header from the request
+        // Pega o header de autorização do request.
         String authorizationHeader =
                 requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
 
-        // Validate the Authorization header
+        // Valida o header de autorização
         if (!isTokenBasedAuthentication(authorizationHeader)) {
             abortWithUnauthorized(requestContext);
             return;
         }
 
-        // Extract the token from the Authorization header
+        // Pega o token de dentro do header
         String token = authorizationHeader
                             .substring(AUTHENTICATION_SCHEME.length()).trim();
 
         try {
 
-            // Validate the token
+            // Valida o Token
             validateToken(token);
 
         } catch (Exception e) {
@@ -49,17 +55,15 @@ public class AutorizadoFilter implements ContainerRequestFilter {
 
     private boolean isTokenBasedAuthentication(String authorizationHeader) {
 
-        // Check if the Authorization header is valid
-        // It must not be null and must be prefixed with "Bearer" plus a whitespace
-        // Authentication scheme comparison must be case-insensitive
+        // Verifica se o header de autorição é válido.
         return authorizationHeader != null && authorizationHeader.toLowerCase()
                     .startsWith(AUTHENTICATION_SCHEME.toLowerCase() + " ");
     }
 
     private void abortWithUnauthorized(ContainerRequestContext requestContext) {
 
-        // Abort the filter chain with a 401 status code
-        // The "WWW-Authenticate" is sent along with the response
+        // Para a execução do filtro retornando 401
+        // O "WWW-Authenticate" é enviado no response.
         requestContext.abortWith(
                 Response.status(Response.Status.UNAUTHORIZED)
                         .header(HttpHeaders.WWW_AUTHENTICATE, AUTHENTICATION_SCHEME)

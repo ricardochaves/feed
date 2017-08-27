@@ -2,12 +2,9 @@ package com.feedglobo;
 
 import static org.junit.Assert.assertEquals;
 
-import java.security.Principal;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.SecurityContext;
 
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
@@ -48,7 +45,7 @@ public class MyResourceTest {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
        
         
-        target = c.target(Main.BASE_URI);
+        this.target = c.target(Main.BASE_URI);
     }
 
     @After
@@ -59,12 +56,6 @@ public class MyResourceTest {
     /**
      * Test to see that the message "Got it!" is sent in the response.
      */
-    @Test
-    public void testGetIt() {
-        String responseMsg = target.path("feed").request().get(String.class);
-        //System.out.println(responseMsg.toString());
-        assertEquals(1,1);
-    }
     
     @Test
     public void testeXMLConvertGetArrayDeItensSucesso()  {
