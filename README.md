@@ -45,7 +45,7 @@ Optei por uma segurança com JWT, gosto muito da parte de microservices e foi um
 
 Dentro de `src.main.java.com.feedglobo.jwt` vocês podem ver todas as classes usadas no processo de criação e validação do token.
 
-Basicamente eu criei uma anotação que leva a um filtro que é executado antes de qualquer metodo onde essa anotação esteja presente, esse filtro utliza as classes do pacote jwt para verificar se o token é valido ou não, caso não seja ele retorna 401.
+Basicamente eu criei uma anotação que leva a um filtro que é executado antes de qualquer metodo onde essa anotação esteja presente, esse filtro utiliza as classes do pacote jwt para verificar se o token é valido ou não, caso não seja ele retorna 401.
 
 Não existe banco de dados nem cadastro de usuários, apenas coloquei um usuário admin com senha admin hard code mesmo.
 
