@@ -52,10 +52,6 @@ public class MyResourceTest {
     public void tearDown() throws Exception {
         server.shutdownNow();
     }
-
-    /**
-     * Test to see that the message "Got it!" is sent in the response.
-     */
     
     @Test
     public void testeXMLConvertGetArrayDeItensSucesso()  {
@@ -253,13 +249,21 @@ public class MyResourceTest {
     	//return (new XMLConvert()).downloadAsString("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml");
     }
 
+
+    /**
+     * Testando o Resource apenas, com a injeção de depência usada aqui
+     * é possível testar o metodo sem precisar baixar xml nem nada do tipo.
+     */
     @Test
     public void testFeedResource() throws Exception {
+    	//Preparando
     	FeedResource feed = new FeedResource(new BlankXMLConvert());
-    	
+
+    	//Executando
      	String retorno = feed.getIt();
+     	
+     	//Verificando
     	assertEquals(retorno.toString(), "{'status':'sucesso'}");
-    	
     	
     }
 }
