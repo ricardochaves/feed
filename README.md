@@ -17,6 +17,8 @@ Execute no terminal `mvn exec:java ` na raiz do projeto.
 
 #### Gere uma imagem, execute na raiz do projeto (Diretório do Dockerfile).
 
+Durante a criação da imagem ele vai executar os testes, eu gosto dessa solução para projetos menores porque ele vai bloquear a geração da imagem se o teste quebrar e fica fácil de fazer um CI dessa forma (Eu tenho projetos usando o CI do bitbucket, caso queiram ver eu posso mostrar, são projetos privados, por isso não estou enviando o link)
+
 `docker build -t <name> .`
 
 Agora rode a imagem.
