@@ -265,34 +265,8 @@ public class MyResourceTest {
     @Test
     public void testFeedResource() throws Exception {
     	FeedResource feed = new FeedResource(new BlankXMLConvert());
-    	SecurityContext sc = new SecurityContext() {
-			
-			@Override
-			public boolean isUserInRole(String role) {
-				// TODO Auto-generated method stub
-				return true;
-			}
-			
-			@Override
-			public boolean isSecure() {
-				// TODO Auto-generated method stub
-				return true;
-			}
-			
-			@Override
-			public Principal getUserPrincipal() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public String getAuthenticationScheme() {
-				// TODO Auto-generated method stub
-				return "";
-			}
-		};
-		
-    	String retorno = feed.getIt(sc);
+    	
+     	String retorno = feed.getIt();
     	assertEquals(retorno.toString(), "{'status':'sucesso'}");
     	
     	

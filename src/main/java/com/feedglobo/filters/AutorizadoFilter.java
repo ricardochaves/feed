@@ -12,7 +12,6 @@ import javax.ws.rs.ext.Provider;
 
 import com.feedglobo.jwt.AjudaAuth;
 import com.feedglobo.jwt.Autorizado;
-import com.feedglobo.jwt.Token;
 
 @Autorizado
 @Provider

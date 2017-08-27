@@ -9,9 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
@@ -19,16 +17,12 @@ import org.xml.sax.SAXException;
 import com.feedglobo.interfaces.IXMLConvert;
 import com.feedglobo.jwt.Autorizado;
 
-
-/**
- * Root resource (exposed at "feed" path)
- */
-
-@Path("feed")
-public class FeedResource {
+@Autorizado
+@Path("feedauth")
+public class FeedResourceAuth {
 
 	@Inject   
-	public FeedResource(IXMLConvert converte) {
+	public FeedResourceAuth(IXMLConvert converte) {
 		this.converte = converte;
 	}
 	
