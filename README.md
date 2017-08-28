@@ -17,13 +17,13 @@ Execute no terminal `mvn exec:java ` na raiz do projeto.
 
 #### Gere uma imagem, execute na raiz do projeto (Diretório do Dockerfile).
 
-Durante a criação da imagem ele vai executar os testes, eu gosto dessa solução para projetos menores porque ele vai bloquear a geração da imagem se o teste quebrar e fica fácil de fazer um CI dessa forma (Eu tenho projetos usando o CI do bitbucket, caso queiram ver eu posso mostrar, são projetos privados, por isso não estou enviando o link)
+Durante a criação da imagem ele vai executar os testes, eu gosto dessa solução para projetos menores porque ele vai bloquear a geração da imagem se o teste quebrar e fica fácil de fazer um CI dessa forma.
 
-`docker build -t <name> .`
+`docker build -t minhaimagem .`
 
 Agora rode a imagem.
 
-`docker run -it -p 90:8080 <name>`
+`docker run -it -p 90:8080 minhaimagem`
 
 Acesse localhost na porta 90.
 
@@ -65,7 +65,7 @@ curl -H "Authorization: JWT <token>" http://localhost:8080/myapp/feedauth
 
 ```
 ## Testes
-Para os teste eu fiz uma pequena cobertura, mas seguindo o principio utlizado você conseguir cobrir a solução totalmente.
+Para os teste eu fiz uma pequena cobertura, mas seguindo o principio utlizado você conseguir cobrir totalmente a solução.
 
 ### Injeção de dependência
 Você pode ver a aplicação de injeção de dependencia na classe `FeedResource`:
@@ -91,7 +91,7 @@ Obviamente isso não funciona se não informamos ao mecanismo de injeção de de
         });
 ```
 
-A rotina de teste que se beneficia desse sistema de injeção de dependência pode ser visto na classe `MyResourceTest` dentro de `src.test.java.com.feedglobo`:
+A rotina de teste que se beneficia desse sistema de injeção de dependência pode ser vista na classe `MyResourceTest` dentro de `src.test.java.com.feedglobo`:
 
 ```
     /**
@@ -112,7 +112,7 @@ A rotina de teste que se beneficia desse sistema de injeção de dependência po
     }
 ```
 
-O código acima você pode ver a criação de uma classe `BlankXMLConvert` que nada mais é do que uma casca feita apenas para testar o metodo `getIt()`, a classe é passada para o contrutor do `FeedResource` e o mesmo não vai fazer a injeção de depencia da classe `XMLConvert`.
+No código acima você pode ver a criação de uma classe `BlankXMLConvert` que nada mais é do que uma casca feita apenas para testar o metodo `getIt()`, a classe é passada para o contrutor do `FeedResource` e o mesmo não vai fazer a injeção de depencia da classe `XMLConvert`.
 
 
 

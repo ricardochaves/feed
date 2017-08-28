@@ -18,33 +18,34 @@ import com.feedglobo.interfaces.IXMLConvert;
 import com.feedglobo.jwt.Autorizado;
 
 /**
- * Expõem o recurso que só pode ser acessado por usuários logados.
- * Pode ser ver o uso da anotação @Aturoizado e também da anotação @Inject 
+ * Expõem o recurso que só pode ser acessado por usuários logados. Pode ser ver
+ * o uso da anotação @Aturoizado e também da anotação @Inject
  */
 @Autorizado
 @Path("feedauth")
 public class FeedResourceAuth {
 
-	@Inject   
-	public FeedResourceAuth(IXMLConvert converte) {
-		this.converte = converte;
-	}
-	
-	@DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml") @QueryParam("xmlurl")
-	private String url;
-	
-	private final IXMLConvert converte;
-	
+    @Inject
+    public FeedResourceAuth(IXMLConvert converte) {
+        this.converte = converte;
+    }
+
+    @DefaultValue("http://revistaautoesporte.globo.com/rss/ultimas/feed.xml")
+    @QueryParam("xmlurl")
+    private String url;
+
+    private final IXMLConvert converte;
+
     /**
-     * Method handling HTTP GET requests. The returned object will be sent
-     * to the client as "APPLICATION_JSON" media type.
+     * Method handling HTTP GET requests. The returned object will be sent to the
+     * client as "APPLICATION_JSON" media type.
      *
      * @return String that will be returned as a APPLICATION_JSON response.
-     * @throws ParserConfigurationException 
-     * @throws IOException 
-     * @throws SAXException 
-     * @throws MalformedURLException 
-     */ 
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     * @throws MalformedURLException
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public String getIt() throws Exception {
