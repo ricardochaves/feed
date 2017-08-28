@@ -98,48 +98,11 @@ public class XMLConvert implements IXMLConvert {
             // Pegando o conteúdo da descrição para começar a extrair os dados.
             org.jsoup.nodes.Document doc1 = Jsoup.parse(itens.getJSONObject(i).getString("description"));
 
-            // Selecionando todos os parágrafos (<p>) de dentro da string description
-            Elements paragrafos = doc1.select("p");
-            for (Element paragrafo : paragrafos) {
+            montaListaDeItensDeParagrafo(doc1, description);
 
-                // Esse if é para regirar os parágos que tem apenas um enter de conteúdo.
-                // Optei por retirar por causa do exemplo de saída de json dado no Git do
-                // desafio.
-                if (!paragrafo.text().equals("\u00a0")) {
-                    JSONObject pjson = new JSONObject();
-                    pjson.put("type", "text");
-                    pjson.put("content", paragrafo.text());
-                    description.put(pjson);
-                }
+            montaListaDeItensDeImagem(doc1, description);
 
-            }
-
-            // Selecionando todas as imagens (<img>) que existem dentro de uma <div>
-            Elements images = doc1.select("div").select("img");
-            for (Element image : images) {
-                JSONObject ijson = new JSONObject();
-                ijson.put("type", "image");
-                ijson.put("content", image.attr("src"));
-                description.put(ijson);
-            }
-
-            // Selecionando todos os links(<a>) dentro da estrutura: <div><ul><li><a>
-            Elements links = doc1.select("div").select("ul").select("li").select("a");
-            JSONArray listalinks = new JSONArray();
-            for (Element link : links) {
-
-                listalinks.put(link.attr("abs:href"));
-            }
-
-            // Após a lista de links montada ela é incluída dentro de um nó links do json de
-            // saída
-            JSONObject ljson = new JSONObject();
-            ljson.put("type", "links");
-            ljson.put("content", listalinks);
-
-            // O novo item (ljson) está pronto e é incluindo como um item da lista
-            // description
-            description.put(ljson);
+            montaListaDeItensDeLinks(doc1, description);
 
             // Pegando o titulo e o link do item e colocando no novo objeto
             org.jsoup.nodes.Document titulo = Jsoup.parse(itens.getJSONObject(i).getString("title"));
@@ -163,5 +126,54 @@ public class XMLConvert implements IXMLConvert {
         }
 
         return feed;
+    }
+
+    private void montaListaDeItensDeParagrafo(org.jsoup.nodes.Document doc, JSONArray description) {
+        // Selecionando todos os parágrafos (<p>) de dentro da string description
+        Elements paragrafos = doc.select("p");
+        for (Element paragrafo : paragrafos) {
+
+            // Esse if é para regirar os parágos que tem apenas um enter de conteúdo.
+            // Optei por retirar por causa do exemplo de saída de json dado no Git do
+            // desafio.
+            if (!paragrafo.text().equals("\u00a0")) {
+                JSONObject pjson = new JSONObject();
+                pjson.put("type", "text");
+                pjson.put("content", paragrafo.text());
+                description.put(pjson);
+            }
+
+        }
+    }
+
+    private void montaListaDeItensDeImagem(org.jsoup.nodes.Document doc, JSONArray description) {
+        // Selecionando todas as imagens (<img>) que existem dentro de uma <div>
+        Elements images = doc.select("div").select("img");
+        for (Element image : images) {
+            JSONObject ijson = new JSONObject();
+            ijson.put("type", "image");
+            ijson.put("content", image.attr("src"));
+            description.put(ijson);
+        }
+    }
+
+    private void montaListaDeItensDeLinks(org.jsoup.nodes.Document doc, JSONArray description) {
+        // Selecionando todos os links(<a>) dentro da estrutura: <div><ul><li><a>
+        Elements links = doc.select("div").select("ul").select("li").select("a");
+        JSONArray listalinks = new JSONArray();
+        for (Element link : links) {
+
+            listalinks.put(link.attr("abs:href"));
+        }
+
+        // Após a lista de links montada ela é incluída dentro de um nó links do json de
+        // saída
+        JSONObject ljson = new JSONObject();
+        ljson.put("type", "links");
+        ljson.put("content", listalinks);
+
+        // O novo item (ljson) está pronto e é incluindo como um item da lista
+        // description
+        description.put(ljson);
     }
 }
